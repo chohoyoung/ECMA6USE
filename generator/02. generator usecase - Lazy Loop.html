@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>
+	02. generator usecase - Lazy Loop
+</title>
+<script>
+
+
+
+
+let each = function*(arr) {
+	console.log('Start Each');
+	for(let value of arr.slice(0)) {	// filter에서 arr을 for of로 호출해서 여길 탄다 그리고..
+		console.log('Each value = ' + value);
+		yield value;	// 여기서의 value는 filter for of의 할당 값으로 넘긴다.
+	}
+}
+
+let filter = function*(arr, filter) {
+	console.log('Start Filter');
+	for(let value of arr) {		// each배열을 넘기고 실제 each배열에서 loop돌면서 yield에서 넘기는 데이터를 받는다.
+		console.log('filter value = ' + value);
+		yield value;	// 그리고 그 데이터를 리턴하지.
+	}
+}
+
+// for(let value of each([1,2,3,4,5])) {
+// 	console.log(value);
+// }
+
+for(let value of filter(each([1,2,3,4]),"")) {
+	console.log(value);	// 얘는 filter에서 받은 데이터를 출력
+}
+
+</script>
+</head>
+<body>
+	02. generator usecase - Lazy Loop
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>
+	01. generator usecase
+</title>
+<script>
+
+
+
+function* genFuncWithReturn() {
+    for(let i=0; i<10; i++) {
+    	yield i;
+    }
+}
+
+// a, b가 반환된다
+for(let value of genFuncWithReturn()) {	//arr을 제네레이션에 넘긴다.
+	console.log("value = "+ value)
+}
+
+
+
+let arrLoop = function* (arr) {
+	let data = arr.pop();
+
+	do {
+		yield data;
+		console.log(data);
+	} while(data = arr.pop());
+};
+
+
+// for of는 generator를 소비한다.
+// 보면 알겟지만 for문이 반복의 갯수를 결정하는게 아니다.
+for(let value of arrLoop([1,2,3,4,5,6])) {	//arr을 제네레이션에 넘긴다.
+	console.log("value = "+ value)
+}
+
+</script>
+</head>
+<body>
+	01. generator usecase
+
+</body>
+</html>
